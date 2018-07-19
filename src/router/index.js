@@ -1,18 +1,20 @@
-import React,{Component} from "react"
-import {BrowserRouter,Route,Link} from "react-router-dom"
+import React, { Component } from "react"
+import { BrowserRouter } from "react-router-dom"
+import RouteArray from "./route-component"
+import BottomBar from '@com/bottom-bar/bottom-bar'
 
 
-
-
-class Router extends Component{
-    render(){
+class Router extends Component {
+    render() {
         return (
-            <BrowserRouter>
-                 <Route path="/ma" component={Ma}/>
-                 <Route path="/li" component={Li}/>
-                 <Route path="/ming" component={Ming}/>
+            <BrowserRouter basename="/chris">
+                <div>
+                    <BottomBar/>
+                    <RouteArray />
+                </div>
             </BrowserRouter>
-            
         )
     }
 }
+
+export default Router;
