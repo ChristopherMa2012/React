@@ -31,3 +31,5 @@ class BottomBarItem extends Component {
         )
     }
 }
+
+export default BottomBarItem;

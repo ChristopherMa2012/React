@@ -22,7 +22,7 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -90,12 +90,13 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-      "@":resolve("src"),
-      "@com": resolve("src/components")
+      "@": resolve("src"),
+      "@com": resolve("src/components"),
+      "@img": resolve("src/assets/images")
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -123,7 +124,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -131,13 +132,19 @@ module.exports = {
         include: paths.appSrc,
       },
       {
-         test: /\.js$/,
-         exclude: "/node_modules/",
-         loader: 'babel-loader',
-         query:{
-           presets:['react','stage-1'],
-           plugins: ['transform-decorators-legacy','transform-decorators']
-         }
+        test: /\.js$/,
+        exclude: "/node_modules/",
+        loader: 'babel-loader',
+        query: {
+          //  presets:['react','stage-1'],
+          //  plugins: ['transform-decorators-legacy','transform-decorators']
+          cacheDirectory: true,
+          plugins: [
+            'transform-runtime',
+            'transform-decorators-legacy',
+          ],
+          presets: ['es2015', 'react', 'stage-1'],
+        }
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -161,7 +168,7 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
@@ -171,9 +178,9 @@ module.exports = {
           {
             test: /\.scss$/,
             use: [
-                "style-loader", // creates style nodes from JS strings
-                "css-loader", // translates CSS into CommonJS
-                "sass-loader" // compiles Sass to CSS
+              "style-loader", // creates style nodes from JS strings
+              "css-loader", // translates CSS into CommonJS
+              "sass-loader" // compiles Sass to CSS
             ]
           },
           // "postcss" loader applies autoprefixer to our CSS.

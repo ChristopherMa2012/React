@@ -5,14 +5,14 @@ import { Route } from "react-router-dom"
 
 const CreditExchange = Loadabel({
     loader: import("@com/credit-exchange"),
-    loading:Loading;
+    loading: Loading
 })
 
 class RouteSet extends Component {
     render() {
         return (
             <div>
-                <Route path="/credit-exchange" Component={} />
+                <Route path="/credit-exchange" Component={CreditExchange} />
             </div>
         )
     }
