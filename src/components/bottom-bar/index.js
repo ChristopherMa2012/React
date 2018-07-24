@@ -36,22 +36,26 @@ const bottomBarData = [{
 
 
 @withRouter
-export default class BottomBar extends Component {
+class BottomBar extends Component {
     render() {
         return (
-            <Con>{
-                bottomBarData.map((item,index) => {
-                     const style = {
-                        "background": require("@img/bottomBar/icon-generalize@2x.png"),
-                        "backgroundSize": "contain"
-                    }
-                    if(index === 2){
-                        style["width"] = "42px";
-                        style["height"] = "42px";
-                    }
-                    return <BottomBarItem  style={style} text={item.text} key={item.text} />
-                })
-            }</Con>
+            <Con>
+                {
+                    bottomBarData.map((item, index) => {
+                        const style = {
+                            "background": require("@img/bottomBar/icon-generalize@2x.png"),
+                            "backgroundSize": "contain"
+                        }
+                        if (index === 2) {
+                            style["width"] = "42px";
+                            style["height"] = "42px";
+                        }
+                        return <BottomBarItem style={style} text={item.text} key={item.text} />
+                    })
+                }
+            </Con>
         )
     }
 }
+
+export default BottomBar;

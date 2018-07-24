@@ -7,7 +7,7 @@ import Router from "@/router"
 
 
 ReactDOM.render(
-    <Router />,
+    <Router/>,
     document.getElementById('root')
 );
 

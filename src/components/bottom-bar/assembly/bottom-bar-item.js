@@ -13,13 +13,12 @@ const Item = styled.div`
       height:27px;
   }
   div{
-      
+
   }
 `
 
 
 class BottomBarItem extends Component {
-
     render() {
         const { style, text } = this.props;
         return (
