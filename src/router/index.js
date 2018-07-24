@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter } from "react-router-dom"
-import RouteArray from "./route-component"
+import RouteSet from "./route-component"
 import BottomBar from '@com/bottom-bar/bottom-bar'
 
 
@@ -10,7 +10,7 @@ class Router extends Component {
             <BrowserRouter basename="/chris">
                 <div>
                     <BottomBar/>
-                    <RouteArray />
+                    <RouteSet  name="zhansan" sex="nan"/>
                 </div>
             </BrowserRouter>
         )

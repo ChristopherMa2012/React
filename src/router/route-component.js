@@ -7,7 +7,10 @@ const Ma = Loadabel({
     loader: () => import('@com/ma'),
     loading: Loading
 })
-
+const SubPage = Loadabel({
+    loader:()=>import('@com/ma/subPage'),
+    loading:Loading
+})
 const Li = Loadabel({
     loader: () => import('@com/li'),
     loading: Loading
@@ -19,15 +22,16 @@ const Ming = Loadabel({
 })
 
 
-class RouteArray extends Component {
+class RouteSet extends Component {
     render() {
         return (
             <div>
                 <Route path="/ma" component={Ma} />
                 <Route path="/li" component={Li} />
                 <Route path="/ming" component={Ming} />
+                <Route path="/ma/2012" component={SubPage}/>
             </div>
         )
     }
 }
-export default RouteArray;
+export default RouteSet;
