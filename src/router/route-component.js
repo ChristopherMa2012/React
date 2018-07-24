@@ -7,7 +7,7 @@ const CreditExchange = Loadabel({
     loader: import("@com/credit-exchange"),
     loading: Loading
 })
-
+console.log(CreditExchange);
 class RouteSet extends Component {
     render() {
         return (

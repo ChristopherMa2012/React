@@ -15,7 +15,7 @@ class Router extends Component {
                 <ThemeProvider theme={{ color: '#4690E9' }}>
                     <div>
                         <BottomBar />
-                        <RouteSet name="zhansan" sex="nan" />
+                        <RouteSet name="zhansan" sex="nan"/>
                     </div>
                 </ThemeProvider>
             </BrowserRouter>

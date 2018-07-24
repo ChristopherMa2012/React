@@ -136,14 +136,13 @@ module.exports = {
         exclude: "/node_modules/",
         loader: 'babel-loader',
         query: {
-          //  presets:['react','stage-1'],
-          //  plugins: ['transform-decorators-legacy','transform-decorators']
-          cacheDirectory: true,
-          plugins: [
-            'transform-runtime',
-            'transform-decorators-legacy',
-          ],
-          presets: ['es2015', 'react', 'stage-1'],
+          presets: ['react', 'stage-1'],
+          plugins: [['transform-runtime', {
+            helpers: false,
+            polyfill: false,
+            regenerator: true,
+          }], 
+          'transform-decorators-legacy', 'transform-decorators']
         }
       },
       {
