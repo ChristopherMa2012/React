@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { withRouter } from 'react-router-dom'
+// import { withRouter } from 'react-router-dom'
+
+const TabBarItem = styled.section`
+ 
+`
 
 
-const BarItem = styled.section`
+const Item = styled.section`
 width: 80px;
 height:45px;
 padding:0 10px;
@@ -21,28 +25,33 @@ div{
 `
 
 
-@withRouter
+// @withRouter
 class BottomBarItem extends Component {
-    itemAction(index) {
-        const { history } = this.props;
-        console.log(history);
-        switch (index) {
-            case 0:
-                history.push('/credit-exchange');
-                break;
-            default:
-                console.log('结束')
+    constructor(props) {
+        super(props);
+        this.state = {
+            curTabIndex: 0
         }
-        return;
+    }
+    itemAction(index) {
+        this.setState({
+            curTabIndex: index
+        })
+        console.log(index);
     }
 
     render() {
-        const { style, text, index } = this.props;
+        const { style, text, index, children } = this.props;
+        console.log('子', children);
         return (
-            <BarItem onClick={() => this.itemAction(index)}>
-                <i style={style}></i>
-                <div>{text}</div>
-            </BarItem>
+            <div>
+                <TabBarItem>
+                    <Item onClick={() => this.itemAction(index)}>
+                        <i style={style}></i>
+                        <div>{text}</div>
+                    </Item>
+                </TabBarItem>
+            </div>
         )
     }
 }
