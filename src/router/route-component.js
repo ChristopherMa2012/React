@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import Loadabel from "react-loadable"
 import Loading from "@/common/loading"
-// import { Route } from "react-router-dom"
+import {Switch,Route } from "react-router-dom"
 
-const CreditExchange = Loadabel({
-    loader: import("@com/credit-exchange"),
+const Index = Loadabel({
+    loader: import("@com/bottom-bar"),
     loading: Loading
 })
-console.log(CreditExchange);
+
+
 class RouteSet extends Component {
     render() {
         return (
-            <div>
-                {/* <Route exact path="/credit-exchange" Component={CreditExchange} /> */}
-            </div>
+            <Switch className="router">
+                <Route exact path="/" Component={Index} />
+                <Route exact path="/chris" Component={Index} />
+            </Switch>
         )
     }
 }

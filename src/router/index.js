@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { BrowserRouter } from "react-router-dom"
 import RouteSet from "./route-component"
-import BottomBar from '@com/bottom-bar/index'
+// import BottomBar from '@com/bottom-bar/index'
 import { injectGlobal,ThemeProvider } from 'styled-components'
 
 injectGlobal`
@@ -11,12 +11,10 @@ injectGlobal`
 class Router extends Component {
     render() {
         return (
-            <BrowserRouter basename="/chris">
+            <BrowserRouter basename="/">
                 <ThemeProvider theme={{ color: '#4690E9' }}>
-                    <div>
-                        <BottomBar />
+                        {/* <BottomBar/> */}
                         <RouteSet/>
-                    </div>
                 </ThemeProvider>
             </BrowserRouter>
         )
