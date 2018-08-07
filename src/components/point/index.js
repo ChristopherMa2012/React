@@ -1,33 +1,38 @@
 import React, { Component } from 'react'
 import { Carousel, WingBlank } from 'antd-mobile'
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { PageComponent } from '../../page_component'
+import PointExchangeArea from './assembly/point-exchange-area'
 
-const Container = styled.section`
-  width:100%;
-  position:absolute;
-`
 
-class Point extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedTab: 'redTab',
-            hidden: false,
-            fullScreen: false,
-            data:[]
-        };
+const subClass = `.am-wingblank.am-wingblank-lg{
+                        margin:0;
+                    }
+                  `
+
+export default class Point extends Component {
+    state = {
+        data: ['1', '2', '3'],
+        imgHeight: 176,
     }
+    componentDidMount() {
+        // Fetch({
+        //     url: 'http://localhost:3000/integral/root/get/mobile'
+        // })
+    }
+    a() {
 
+    }
     render() {
         return (
-            <Container>
-                <div>颤三</div>
+            <div>
+            <PageComponent subClass={subClass}>
                 <WingBlank>
                     <Carousel
-                        autoplay={false}
+                        autoplay={true}
                         infinite
-                        beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                        afterChange={index => console.log('slide to', index)}
+                        beforeChange={() => this.a}
+                        afterChange={() => this.a}
                     >
                         {this.state.data.map(val => (
                             <a
@@ -49,9 +54,11 @@ class Point extends Component {
                         ))}
                     </Carousel>
                 </WingBlank>
-            </Container>
+            </PageComponent>
+            <PointExchangeArea/>
+            </div>
+
         )
     }
 }
 
-export default Point;

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile';
 import Loadable from 'react-loadable'
 import Loading from '../../common/loading'
+import { Page, PageHeader, PageBody } from '../../page_component'
+
 
 const LoadableOpts = {
   loading: Loading
@@ -85,57 +87,60 @@ const bottomBarData = [{
 }]
 
 
-class BottomBar extends Component {
+export default class BottomBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedTab: 'blueTab',
-      hidden: false,
-      fullScreen: true,
+      hidden: false
     };
   }
 
   render() {
     return (
-      <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 400 }}>
-        <TabBar
-          unselectedTintColor="#949494"
-          tintColor="#33A3F4"
-          barTintColor="white"
-          hidden={this.state.hidden}
-          tabBarPosition="bottom"
-        >
-          {
-            bottomBarData.map(item =>
-              <TabBar.Item
-                title={item.title}
-                key={item.key}
-                icon={<div style={item.iconStyle || {
-                  width: '27px',
-                  height: '27px',
-                  background: `url(${item.background}) center center /  27px 27px no-repeat`
-                }}
-                />
-                }
-                selectedIcon={<div style={{
-                  width: '27px',
-                  height: '27px',
-                  background: `url(${item.activeBackground}) center center /  27px 27px no-repeat`
-                }}
-                />
-                }
-                selected={this.state.selectedTab === item.selectedTab}
-                onPress={() => item.onPress(this)}
-                data-seed="logId"
-              >
-                <item.children />
-              </TabBar.Item>
-            )
-          }
-        </TabBar>
-      </div>
+      <Page>
+        <PageHeader title="积分" />
+        <PageBody>
+          <div style={{ position: 'fixed', height: 'calc(100% - 44px)', width: '100%', top: '44px' }}>
+            <TabBar
+              unselectedTintColor="#949494"
+              tintColor="#33A3F4"
+              barTintColor="white"
+              hidden={this.state.hidden}
+              tabBarPosition="bottom"
+            >
+              {
+                bottomBarData.map(item =>
+                  <TabBar.Item
+                    title={item.title}
+                    key={item.key}
+                    icon={<div style={item.iconStyle || {
+                      width: '27px',
+                      height: '27px',
+                      background: `url(${item.background}) center center /  27px 27px no-repeat`
+                    }}
+                    />
+                    }
+                    selectedIcon={<div style={{
+                      width: '27px',
+                      height: '27px',
+                      background: `url(${item.activeBackground}) center center /  27px 27px no-repeat`
+                    }}
+                    />
+                    }
+                    selected={this.state.selectedTab === item.selectedTab}
+                    onPress={() => item.onPress(this)}
+                    data-seed="logId"
+                  >
+                    <item.children />
+                  </TabBar.Item>
+                )
+              }
+            </TabBar>
+          </div>
+        </PageBody>
+      </Page>
     );
   }
 }
 
-export default BottomBar;
