@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "presets": [
     "es2015",
@@ -21,4 +22,9 @@
       ]
     ]
   ]
+=======
+{
+  "presets": ["es2015", "react", "stage-1"],
+  "plugins": ["transform-decorators-legacy"]
+>>>>>>> 07e5dcb8a2640a950eee88325cbadeac2bfd52c3
 }
