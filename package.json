@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "reactapp",
-=======
-  "name": "phone-app",
->>>>>>> 07e5dcb8a2640a950eee88325cbadeac2bfd52c3
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -102,10 +98,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "babel-plugin-import": "^1.8.0",
-=======
->>>>>>> 07e5dcb8a2640a950eee88325cbadeac2bfd52c3
     "babel-plugin-transform-decorators": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
