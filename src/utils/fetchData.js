@@ -19,7 +19,7 @@ window.Fetch =  async opts => {
   // optsData.cache = 'no-cache';
 
 //get请求方式
-if (opts.method.toUpperCase() === 'GET') {
+if (opts.method && opts.method.toUpperCase() === 'GET') {
   optsData.method = 'GET';
   if (opts.body !== undefined) {
     opts.url += '?';
@@ -30,7 +30,7 @@ if (opts.method.toUpperCase() === 'GET') {
   }
 }
 //post请求方式
-if (opts.method.toUpperCase() === 'POST') {
+if (opts.method && opts.method.toUpperCase() === 'POST') {
   optsData.method = 'POST';
   //json数据
   if (Object.prototype.toString.call(opts.body) !== "[object FormData]") {
@@ -56,7 +56,7 @@ if (opts.method.toUpperCase() === 'POST') {
 const res = await fetch(opts.url, {
     mode: 'cors',
     credentials: 'include',
-    method: optsData.method,
+    method: optsData.method || 'GET',
     headers: optsData.headers,
     body: optsData.body || {}
   });

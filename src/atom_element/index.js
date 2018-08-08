@@ -30,6 +30,18 @@ export const Title = styled.h1`
     font-weight: ${ ({ weight }) => weight || 'normal'};
 `
 
+export const LI = styled.li`
+     margin:0;
+     padding:0;
+     list-style:none;
+`
+export const UL = styled.ul`
+     margin:0;
+     padding:0;
+     display:flex;
+     flex-wrap:wrap;
+`
+
 //占位容器
 export const PlaceHolder = styled.div`
    

@@ -6,7 +6,9 @@
   ],
   "compact": false,
   "plugins": [
-    ["transform-decorators-legacy"],
+    [
+      "transform-decorators-legacy"
+    ],
     [
       "import",
       [

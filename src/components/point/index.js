@@ -12,13 +12,14 @@ const subClass = `.am-wingblank.am-wingblank-lg{
 
 export default class Point extends Component {
     state = {
-        data: ['1', '2', '3'],
+        data: [],
         imgHeight: 176,
     }
-    componentDidMount() {
-        // Fetch({
-        //     url: 'http://localhost:3000/integral/root/get/mobile'
-        // })
+    async  componentDidMount() {
+        const res = await window.Fetch({ url: 'http://localhost:8000/point/mobile' })
+        this.setState({
+            data: res.data.banner
+        })
     }
     a() {
 
@@ -26,36 +27,35 @@ export default class Point extends Component {
     render() {
         return (
             <div>
-            <PageComponent subClass={subClass}>
-                <WingBlank>
-                    <Carousel
-                        autoplay={true}
-                        infinite
-                        beforeChange={() => this.a}
-                        afterChange={() => this.a}
-                    >
-                        {this.state.data.map(val => (
-                            <a
-                                key={val}
-                                href="http://www.alipay.com"
-                                style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
-                            >
-                                <img
-                                    src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
-                                    alt=""
-                                    style={{ width: '100%', verticalAlign: 'top' }}
-                                    onLoad={() => {
-                                        // fire window resize event to change height
-                                        window.dispatchEvent(new Event('resize'));
-                                        this.setState({ imgHeight: 'auto' });
-                                    }}
-                                />
-                            </a>
-                        ))}
-                    </Carousel>
-                </WingBlank>
-            </PageComponent>
-            <PointExchangeArea/>
+                <PageComponent subClass={subClass}>
+                    <WingBlank>
+                        <Carousel
+                            autoplay={true}
+                            infinite
+                            beforeChange={() => this.a}
+                            afterChange={() => this.a}
+                        >
+                            {this.state.data && this.state.data.map((item, index) => (
+                                <a
+                                    key={index}
+                                    href={item.url}
+                                    style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
+                                >
+                                    <img
+                                        src={item.pic_url}
+                                        alt=""
+                                        style={{ width: '100%', verticalAlign: 'top' }}
+                                        onLoad={() => {
+                                            window.dispatchEvent(new Event('resize'));
+                                            this.setState({ imgHeight: 'auto' });
+                                        }}
+                                    />
+                                </a>
+                            ))}
+                        </Carousel>
+                    </WingBlank>
+                </PageComponent>
+                <PointExchangeArea/>
             </div>
 
         )

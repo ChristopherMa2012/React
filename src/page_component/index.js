@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
-import { Icon, Title,PlaceHolder } from '../atom_element'
+import { Icon, Title, PlaceHolder } from '../atom_element'
 
 const PageInit = {
     headerHeight: 44,
@@ -24,7 +24,7 @@ const Header = styled.section`
     align-items:center;
     justify-content:space-between;
 `
-const PageFooter = styled.section`
+export const PageFooter = styled.section`
     width:100%;
     padding:0;
     margin: 0;
@@ -55,22 +55,25 @@ export const PageBody = styled.section`
 `
 
 export const PageComponent = styled.section`
-  ${({subClass}) => subClass} {
-    ${({classBody}) => classBody}
-  }
+  ${({ subClass }) => subClass}
 `
 
 @withRouter
 export class PageHeader extends React.Component {
     render() {
-        const { title, HeaderRight, history } = this.props
+        const { title, HeaderRight, history, showBackBtn } = this.props
         return (
             <Header>
-                <Icon width="16" height="16" url={require('../assets/images/header/icon-arrow-left@2x.png')} onClick={() => history.go(-1)} />
+                <Icon
+                    width="16"
+                    height="16"
+                    url={require('../assets/images/header/icon-arrow-left@2x.png')}
+                    onClick={() => history.go(-1)}
+                    style={{ visibility: showBackBtn ? 'visible' : 'hidden' }}
+                />
                 <Title color="#202020" size="18" aligh="center" weight="400">{title}</Title>
                 {
-
-                    HeaderRight && HeaderRight() || <PlaceHolder/>
+                    (HeaderRight && HeaderRight()) || <PlaceHolder />
                 }
             </Header>
         )
