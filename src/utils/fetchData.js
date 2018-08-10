@@ -55,7 +55,7 @@ export default async opts => {
     headers: optsData.headers,
     body: optsData.body || {}
   });
-
+  
   return await res.json();
 }
 
