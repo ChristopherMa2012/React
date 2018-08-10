@@ -1,7 +1,9 @@
+//@flow
 import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
-import { Icon, Title, PlaceHolder, Text,P} from '../atom_element'
+import { Icon, Title, PlaceHolder, Text, P, UL, LI } from '../atom_element'
+import { inject } from '../../node_modules/mobx-react';
 
 const PageInit = {
     headerHeight: 44,
@@ -61,9 +63,12 @@ export const PageComponent = styled.section`
 
 
 @withRouter
+@inject(({ store }) => ({
+    indexTitle: store.IndexStore.indexTitle
+}))
 export class PageHeader extends React.Component {
     render() {
-        const { title, HeaderRight, history, showBackBtn } = this.props
+        const { indexTitle, HeaderRight, history, showBackBtn } = this.props
         return (
             <Header>
                 <Icon
@@ -73,7 +78,7 @@ export class PageHeader extends React.Component {
                     onClick={() => history.go(-1)}
                     style={{ visibility: showBackBtn ? 'visible' : 'hidden' }}
                 />
-                <Title color="#202020" size="18" aligh="center" weight="400">{title}</Title>
+                <Title color="#202020" size="18" aligh="center" weight="400">{indexTitle}</Title>
                 {
                     (HeaderRight && HeaderRight()) || <PlaceHolder />
                 }
@@ -82,16 +87,61 @@ export class PageHeader extends React.Component {
     }
 }
 
+
+
+
 export function RichText(props) {
-    let { textStyleArray, children ,style} = props;
+    let { textStyleArray, children, style } = props;
     let temArr = children.split('++');
     let resArr = [];
     let styleIndex = 0;
     temArr.forEach((item, index) => {
         if (item === '') return null;
+        if (!item.includes('--')) {
+            resArr.push(item);
+            return;
+        }
         let tem = item.split('--');
         resArr.push(<Text key={index} display="inline-block" style={textStyleArray[styleIndex++]}>{tem[0]}</Text>);
         resArr.push(tem[1]);
     })
     return (<P style={style}> {resArr}</P>)
+}
+
+
+export class Table extends React.Component {
+    render() {
+        const { headerData, bodyData,headerStyle} = this.props;
+        return (
+            <section>
+                <UL>
+                    {
+                        headerData && headerData.map((item, index) => (
+                            <LI key={index}  style={{flex: `1 1 ${1 / headerData.length * 100}%` }}>
+                                <Title style={headerStyle}>{item}</Title>
+                            </LI>
+                        ))
+                    }
+                </UL>
+                <UL>
+                    {
+                        bodyData && bodyData.map((item, index) => (
+                            <LI key={index} display="flex" width="100%" style={{ justifyContent: 'space-around' }}>
+                                {
+                                    item.map((subItem, index) => {
+                                        return (
+                                            <Text key={index} align="center" style={{ flex: `0 0 ${1 / item.length * 100}%` }}>
+                                                {subItem}
+                                            </Text>
+                                        )
+
+                                    })
+                                }
+                            </LI>
+                        ))
+                    }
+                </UL>
+            </section>
+        )
+    }
 }

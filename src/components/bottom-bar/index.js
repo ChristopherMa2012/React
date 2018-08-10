@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { inject,observer } from 'mobx-react';
 import { TabBar } from 'antd-mobile';
 import Loadable from 'react-loadable'
 import Loading from '../../common/loading'
@@ -33,7 +34,8 @@ const bottomBarData = [{
   key: 'point',
   selectedTab: 'blueTab',
   children: Point,
-  onPress: (self) => {
+  onPress: (self, changeIndexTitle) => {
+    changeIndexTitle('对分')
     self.setState({
       selectedTab: 'blueTab',
     });
@@ -45,7 +47,8 @@ const bottomBarData = [{
   key: 'agent',
   selectedTab: 'redTab',
   children: Agent,
-  onPress: (self) => {
+  onPress: (self, changeIndexTitle) => {
+    changeIndexTitle('代理')
     self.setState({
       selectedTab: 'redTab',
     });
@@ -54,7 +57,9 @@ const bottomBarData = [{
   key: 'promotion',
   selectedTab: 'pinkTab',
   children: Promotion,
-  onPress: () => { },
+  onPress: (self, changeIndexTitle) => {
+    changeIndexTitle('推广')
+  },
   iconStyle: {
     width: '42px',
     height: '42px',
@@ -67,7 +72,8 @@ const bottomBarData = [{
   key: 'income',
   selectedTab: 'greenTab',
   children: Income,
-  onPress: (self) => {
+  onPress: (self, changeIndexTitle) => {
+    changeIndexTitle('收益')
     self.setState({
       selectedTab: 'greenTab',
     });
@@ -79,13 +85,17 @@ const bottomBarData = [{
   key: 'mine',
   selectedTab: 'yellowTab',
   children: Mine,
-  onPress: (self) => {
+  onPress: (self, changeIndexTitle) => {
+    changeIndexTitle('我的')
     self.setState({
       selectedTab: 'yellowTab',
     });
   }
 }]
 
+@inject(({store}) => ({
+  changeIndexTitle: store.IndexStore.changeIndexTitle
+}))
 
 export default class BottomBar extends Component {
   constructor(props) {
@@ -97,9 +107,10 @@ export default class BottomBar extends Component {
   }
 
   render() {
+    const {changeIndexTitle}  = this.props;
     return (
       <Page>
-        <PageHeader title="积分" showBackBtn={false} />
+        <PageHeader showBackBtn={false} />
         <PageBody>
           <div style={{ position: 'fixed', height: 'calc(100% - 44px)', width: '100%', top: '44px' }}>
             <TabBar
@@ -129,7 +140,7 @@ export default class BottomBar extends Component {
                     />
                     }
                     selected={this.state.selectedTab === item.selectedTab}
-                    onPress={() => item.onPress(this)}
+                    onPress={() => item.onPress(this,changeIndexTitle)}
                     data-seed="logId"
                   >
                     <item.children />
