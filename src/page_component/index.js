@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
-import { Icon, Title, PlaceHolder } from '../atom_element'
+import { Icon, Title, PlaceHolder, Text,P} from '../atom_element'
 
 const PageInit = {
     headerHeight: 44,
@@ -58,6 +58,8 @@ export const PageComponent = styled.section`
   ${({ subClass }) => subClass}
 `
 
+
+
 @withRouter
 export class PageHeader extends React.Component {
     render() {
@@ -78,4 +80,18 @@ export class PageHeader extends React.Component {
             </Header>
         )
     }
+}
+
+export function RichText(props) {
+    let { textStyleArray, children ,style} = props;
+    let temArr = children.split('++');
+    let resArr = [];
+    let styleIndex = 0;
+    temArr.forEach((item, index) => {
+        if (item === '') return null;
+        let tem = item.split('--');
+        resArr.push(<Text key={index} display="inline-block" style={textStyleArray[styleIndex++]}>{tem[0]}</Text>);
+        resArr.push(tem[1]);
+    })
+    return (<P style={style}> {resArr}</P>)
 }

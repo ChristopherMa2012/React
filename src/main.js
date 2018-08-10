@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import 'antd-mobile/dist/antd-mobile.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from "@/router"
-import './utils/fetchData'
+import Fetch from './utils/fetchData'
 
+window.Fetch = Fetch;
 
 ReactDOM.render(
     <App/>,

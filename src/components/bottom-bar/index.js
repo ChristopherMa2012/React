@@ -99,7 +99,7 @@ export default class BottomBar extends Component {
   render() {
     return (
       <Page>
-        <PageHeader title="积分" showBackBtn={false}/>
+        <PageHeader title="积分" showBackBtn={false} />
         <PageBody>
           <div style={{ position: 'fixed', height: 'calc(100% - 44px)', width: '100%', top: '44px' }}>
             <TabBar

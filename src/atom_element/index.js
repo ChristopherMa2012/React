@@ -41,6 +41,23 @@ export const UL = styled.ul`
      display:flex;
      flex-wrap:wrap;
 `
+export const P = styled.p`
+     margin:0;
+     padding:0;
+`
+
+export const Button = styled.button`
+    margin:0;
+    padding:0;
+    text-align:center;
+    border:none;
+    display: ${ ({display}) => display || 'block'};
+`
+export const Input = styled.input`
+   border:none;
+   padding:0;
+   margin:0;
+`
 
 //占位容器
 export const PlaceHolder = styled.div`
