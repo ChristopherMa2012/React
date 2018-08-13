@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { inject,observer } from 'mobx-react';
+import { inject } from 'mobx-react';
 import { TabBar } from 'antd-mobile';
 import Loadable from 'react-loadable'
 import Loading from '../../common/loading'
@@ -32,12 +32,12 @@ const bottomBarData = [{
   activeBackground: require('@img/bottomBar/icon-integral-s@2x.png'),
   title: '对分',
   key: 'point',
-  selectedTab: 'blueTab',
+  selectedTab: 'pointTab',
   children: Point,
   onPress: (self, changeIndexTitle) => {
     changeIndexTitle('对分')
     self.setState({
-      selectedTab: 'blueTab',
+      selectedTab: 'pointTab',
     });
   }
 }, {
@@ -45,20 +45,23 @@ const bottomBarData = [{
   activeBackground: require('@img/bottomBar/icon-agency-s@2x.png'),
   title: '代理',
   key: 'agent',
-  selectedTab: 'redTab',
+  selectedTab: 'agentTab',
   children: Agent,
   onPress: (self, changeIndexTitle) => {
     changeIndexTitle('代理')
     self.setState({
-      selectedTab: 'redTab',
+      selectedTab: 'agentTab',
     });
   }
 }, {
   key: 'promotion',
-  selectedTab: 'pinkTab',
+  selectedTab: 'promotionTab',
   children: Promotion,
   onPress: (self, changeIndexTitle) => {
     changeIndexTitle('推广')
+    self.setState({
+      selectedTab: 'promotionTab',
+    });
   },
   iconStyle: {
     width: '42px',
@@ -70,12 +73,12 @@ const bottomBarData = [{
   activeBackground: require('@img/bottomBar/icon-earnings-s@2x.png'),
   title: '收益',
   key: 'income',
-  selectedTab: 'greenTab',
+  selectedTab: 'incomeTab',
   children: Income,
   onPress: (self, changeIndexTitle) => {
     changeIndexTitle('收益')
     self.setState({
-      selectedTab: 'greenTab',
+      selectedTab: 'incomeTab',
     });
   }
 }, {
@@ -83,12 +86,12 @@ const bottomBarData = [{
   activeBackground: require('@img/bottomBar/icon-mine-s@2x.png'),
   title: '我的',
   key: 'mine',
-  selectedTab: 'yellowTab',
+  selectedTab: 'mineTab',
   children: Mine,
   onPress: (self, changeIndexTitle) => {
     changeIndexTitle('我的')
     self.setState({
-      selectedTab: 'yellowTab',
+      selectedTab: 'mineTab',
     });
   }
 }]
@@ -101,7 +104,7 @@ export default class BottomBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'blueTab',
+      selectedTab: 'pointTab',
       hidden: false
     };
   }
@@ -132,7 +135,7 @@ export default class BottomBar extends Component {
                     }}
                     />
                     }
-                    selectedIcon={<div style={{
+                    selectedIcon={<div style={ item.iconStyle || {
                       width: '27px',
                       height: '27px',
                       background: `url(${item.activeBackground}) center center /  27px 27px no-repeat`

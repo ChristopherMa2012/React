@@ -53,7 +53,7 @@ export default async opts => {
     credentials: 'include',
     method: optsData.method || 'GET',
     headers: optsData.headers,
-    body: optsData.body || {}
+    body: optsData.body ||  undefined
   });
   
   return await res.json();
