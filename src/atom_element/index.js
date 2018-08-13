@@ -61,8 +61,9 @@ export const Input = styled.input`
    margin:0;
 `
 
-export const Img = styled.img`
+export const IMG = styled.img`
   border:none;  
+  display:block;
 `
 
 

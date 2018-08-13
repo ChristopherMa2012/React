@@ -1,14 +1,86 @@
-import React,{Component} from 'react'
-import styled from 'styled-components';
+import React, { Component } from 'react'
+// import styled from 'styled-components'
+import { Tabs, Badge } from 'antd-mobile'
+import { PageComponent } from '../../page_component'
+import { UL, LI, IMG, Title } from '../../atom_element'
 
-const Container = styled.section`
-  width:100%;
-  position:absolute;
+
+const subClass = `
+   .item-container{
+       display:flex;
+       flex-wrap:wrap;
+       justify-content: space-between;
+       li{
+          flex:0 0 45.33%;
+          overflow:hidden;
+          .img-style{
+              width:75.29%;
+              margin:0 auto;
+          }
+       }
+   };
+
 `
-class Promotion extends Component{
-    render(){
-        return(
-            <Container>哈</Container>
+
+const tabs = [
+    { title: <Badge>推广</Badge> },
+    { title: <Badge>案例</Badge> },
+    { title: <Badge>活动</Badge> },
+];
+
+const promotionData = [{
+    title: '分享二维码图片',
+    icon: require('@img/promotion/icon-code@2x.png'),
+    subTitle: '分享二维码  美观又时尚'
+}, {
+    title: '分享链接',
+    icon: require('@img/promotion/icon-link@2x.png'),
+    subTitle: '分享链接  有钱一起赚'
+}, {
+    title: '面对面开通',
+    icon: require('@img/promotion/icon-face@2x.png'),
+    subTitle: '当面账户开通   方便快捷'
+}, {
+    title: '发圈模版',
+    icon: require('@img/promotion/Group6@2x.png'),
+    subTitle: '中央文案 中央美图  一键更新'
+}]
+
+
+
+
+
+class Promotion extends Component {
+    render() {
+        return (
+            <PageComponent subClass={subClass}>
+                <Tabs tabs={tabs}
+                    initialPage={0}
+                    onChange={(tab, index) => { console.log('onChange', index, tab); }}
+                    onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+                >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                        <UL className="item-container">
+                            {
+                                promotionData.map((item, index) => (
+                                    <LI key={index}>
+                                        <IMG src={item.icon} className="img-style"/>
+                                        <Title size="15" color="#242424" align="center">{item.title}</Title>
+                                        <div style={{}}>{item.subTitle}</div>
+                                    </LI>
+                                ))
+                            }
+                        </UL>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+                        暂未开放
+                   </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
+                        暂未开放
+                    </div>
+                </Tabs>
+            </PageComponent>
+
         )
     }
 }
