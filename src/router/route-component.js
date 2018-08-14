@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
-import Loadabel from "react-loadable"
+import Loadable from "react-loadable"
 import Loading from "@/common/loading"
-import {Switch,Route } from "react-router-dom"
+import { Switch, Route } from "react-router-dom"
 
-const Index = Loadabel({
-    loader: import("@com/bottom-bar"),
+const Index = Loadable({
+    loader: () => import("@com/bottom-bar"),
     loading: Loading
 })
 
 
-class RouteSet extends Component {
+export default class RouteSet extends Component {
     render() {
         return (
-            <Switch className="router">
-                <Route exact path="/" Component={Index} />
-                <Route exact path="/chris" Component={Index} />
+            <Switch>
+                <Route exact path="/" component={Index} />
+                <Route exact path="/chris" component={Index} />
             </Switch>
         )
     }
 }
-export default RouteSet;

@@ -6,10 +6,11 @@ import { Button, Input } from '../../atom_element'
 import PointExchangeArea from './assembly/point-exchange-area'
 
 
-const subClass = `.am-wingblank.am-wingblank-lg{
-                        margin:0;
-                    }      
-                    `
+const subClass = `
+.am-wingblank.am-wingblank-lg{
+    margin:0;
+}      
+ `
 const PointCalculator = styled.section`
   border-radius: 4px;
   background-color:#FFFFFF;
