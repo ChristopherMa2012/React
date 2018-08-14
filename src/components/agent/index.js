@@ -35,6 +35,7 @@ const titleProps = {
 }
 
 class Agent extends Component {
+
     state = {
         levelData: [],
         levelRight: [],
@@ -42,7 +43,7 @@ class Agent extends Component {
         currentLevel: 0
     }
     async componentDidMount() {
-        let res = await window.Fetch({ url: 'http://localhost:8000/point/level' })
+        let res = await window.Fetch({ url: '/point/level' })
         res = res.data;
         const currentLevelData = res.data[res.data.findIndex(item => item.id === res.current_level)];
         this.setState({

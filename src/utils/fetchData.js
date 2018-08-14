@@ -1,3 +1,4 @@
+
 //异步请求工具函数
 /*opts = {
   method: '',  // get/post
@@ -10,6 +11,7 @@
   或者headers: new Headers()
   body: FormData 或者json对象
 }*/
+// let data = null, error = null;
 export default async opts => {
   let optsData = Object.create(null);
   // optsData.mode = 'cors';
@@ -44,18 +46,28 @@ export default async opts => {
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
       }
-
     }
   }
 
+  // try {
   const res = await fetch(opts.url, {
     mode: 'cors',
     credentials: 'include',
     method: optsData.method || 'GET',
     headers: optsData.headers,
-    body: optsData.body ||  undefined
+    body: optsData.body || undefined
   });
-  
-  return await res.json();
+  let succLabel = true;
+  let data = null;
+  try {
+    data = await res.json()
+  } catch (err) {
+    succLabel = false;
+    /**
+     * 请求失败处理操作
+     */
+  } finally {
+    if (succLabel) return data;
+  }
 }
 

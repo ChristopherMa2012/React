@@ -44,7 +44,6 @@ export const Page = styled.section`
     position:relative;
 `
 
-
 export const PageBody = styled.section`    
     width:100%;
     padding:0;
