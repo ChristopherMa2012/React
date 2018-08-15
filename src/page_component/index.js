@@ -1,4 +1,10 @@
-//@flow
+/*
+ * @Author: chris 
+ * @Date: 2018-08-14 16:23:15 
+ * @Last Modified by:   chris 
+ * @Last Modified time: 2018-08-14 16:23:15 
+ */
+
 import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
