@@ -53,10 +53,11 @@
   },
   "scripts": {
     "app-start": "concurrently \"npm run debug\" \"npm run app-start\"  ",
-    "start": "node scripts/start.js ",
+    "start": "flow status && node scripts/start.js ",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "debug": "nodemon --nolazy --inspect-brk server/index.js"
+    "debug": "nodemon --nolazy --inspect-brk server/index.js",
+    "flow": "flow"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -101,11 +102,14 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-transform-decorators": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-1": "^6.24.1",
     "concurrently": "^3.6.1",
+    "flow-bin": "^0.78.0",
     "node-sass": "^4.9.2",
     "nodemon": "^1.18.3",
     "react-loadable": "^5.4.0",

@@ -1,3 +1,9 @@
+/*
+ * @Author: chris 
+ * @Date: 2018-08-14 16:22:49 
+ * @Last Modified by: chris
+ * @Last Modified time: 2018-08-15 10:51:11
+ */
 import React, { Component } from 'react'
 // import styled from 'styled-components'
 import { Tabs, Badge } from 'antd-mobile'
@@ -20,7 +26,7 @@ const subClass = `
           background-color:#FFFFFF;
           .img-style{
               width:75.29%;
-              margin:0 auto;
+              margin:16px auto 0;
           }
        }
    };
