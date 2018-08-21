@@ -5,11 +5,14 @@ import registerServiceWorker from './registerServiceWorker';
 import App from "@/router"
 import Fetch from './utils/fetchData'
 
+ 
 window.Fetch = Fetch;
+
 
 ReactDOM.render(
     <App/>,
     document.getElementById('root')
 );
+
 
 registerServiceWorker();

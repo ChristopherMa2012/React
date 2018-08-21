@@ -53,7 +53,7 @@
   },
   "scripts": {
     "app-start": "concurrently \"npm run debug\" \"npm run app-start\"  ",
-    "start": "flow status && node scripts/start.js ",
+    "start": " node scripts/start.js ",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "debug": "nodemon --nolazy --inspect-brk server/index.js",
@@ -105,6 +105,7 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-1": "^6.24.1",

@@ -2,12 +2,12 @@
  * @Author: chris 
  * @Date: 2018-08-14 16:22:49 
  * @Last Modified by: chris
- * @Last Modified time: 2018-08-15 10:51:11
+ * @Last Modified time: 2018-08-16 09:46:15
  */
 import React, { Component } from 'react'
 // import styled from 'styled-components'
 import { Tabs, Badge } from 'antd-mobile'
-import { PageComponent, RichText } from '../../page_component'
+import { PageComponent,RichText, List } from '../../page_component'
 import { UL, LI, IMG, Title } from '../../atom_element'
 
 
@@ -70,7 +70,7 @@ class Promotion extends Component {
                     onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                        <UL className="item-container">
+                        {/* <UL className="item-container">
                             {
                                 promotionData.map((item, index) => (
                                     <LI key={index}>
@@ -78,13 +78,18 @@ class Promotion extends Component {
                                         <Title size="15" color="#242424" align="center" style={{ margin: ' 8px 0' }}>{item.title}</Title>
                                         <RichText
                                             textStyleArray={[{ display: 'block', textAlign: 'center' }]}
-                                            style={{ textAlign: 'center', lineHeight: '18px',color:'#999999',fontSize:'13px'}}>
+                                            style={{ textAlign: 'center', lineHeight: '18px', color: '#999999', fontSize: '13px' }}>
                                             {item.subTitle}
                                         </RichText>
                                     </LI>
                                 ))
                             }
-                        </UL>
+                        </UL> */}
+                        <List listData={promotionData}>
+                            <IMG  />
+                            <Title></Title>
+                            <RichText ></RichText>
+                        </List>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
                         暂未开放

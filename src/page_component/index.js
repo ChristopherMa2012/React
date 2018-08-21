@@ -1,15 +1,16 @@
 /*
  * @Author: chris 
  * @Date: 2018-08-14 16:23:15 
- * @Last Modified by:   chris 
- * @Last Modified time: 2018-08-14 16:23:15 
+ * @Last Modified by: chris
+ * @Last Modified time: 2018-08-16 14:31:03
  */
 
 import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import { Icon, Title, PlaceHolder, Text, P, UL, LI } from '../atom_element'
-import { inject } from '../../node_modules/mobx-react';
+import { inject } from 'mobx-react'
+import { createClass } from '../utils/customComponent'
 
 const PageInit = {
     headerHeight: 44,
@@ -42,13 +43,27 @@ export const PageFooter = styled.section`
     z-index:10;
 `
 
-export const Page = styled.section`
-    padding: 0;
-    margin:0;
-    width:100%;
-    min-height:100%;
-    position:relative;
-`
+
+// export const Page = styled.section`
+//     padding: 0;
+//     margin:0;
+//     width:100%;
+//     min-height:100%;
+//     position:relative;
+// `
+export const Page = (props) => {
+    const className = createClass(`
+         padding: 0;
+           margin:0; 
+         width:100%;
+         min-height:100%;
+         position:relative;
+    `);
+    return (<section className={className}>
+        {props.children}
+    </section>)
+}
+
 
 export const PageBody = styled.section`    
     width:100%;
@@ -116,13 +131,13 @@ export function RichText(props) {
 
 export class Table extends React.Component {
     render() {
-        const { headerData, bodyData,headerStyle} = this.props;
+        const { headerData, bodyData, headerStyle } = this.props;
         return (
             <section>
                 <UL>
                     {
                         headerData && headerData.map((item, index) => (
-                            <LI key={index}  style={{flex: `1 1 ${1 / headerData.length * 100}%` }}>
+                            <LI key={index} style={{ flex: `1 1 ${1 / headerData.length * 100}%` }}>
                                 <Title style={headerStyle}>{item}</Title>
                             </LI>
                         ))
@@ -147,6 +162,24 @@ export class Table extends React.Component {
                     }
                 </UL>
             </section>
+        )
+    }
+}
+
+export class List extends React.Component {
+    render() {
+        const { listData, children } = this.props;
+        debugger;
+        return (
+            <UL>
+                {
+                    listData.map((item, index) => (
+                        <LI key={index}>
+                            {children.slice(0, 1)}
+                        </LI>
+                    ))
+                }
+            </UL>
         )
     }
 }
