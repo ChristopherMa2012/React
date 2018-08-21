@@ -12,7 +12,15 @@
   body: FormData 或者json对象
 }*/
 // let data = null, error = null;
+
+//请求url数组
+let requestUrlArr = [];
+
 export default async opts => {
+  //多次点击处理
+  if (requestUrlArr.indexOf(opts.url) > 0) return;
+  requestUrlArr.push(opts.url);
+
   let optsData = Object.create(null);
   // optsData.mode = 'cors';
   // optsData.credentials = 'inlucde';
@@ -57,6 +65,7 @@ export default async opts => {
     headers: optsData.headers,
     body: optsData.body || undefined
   });
+  requestUrlArr = requestUrlArr.splice(requestUrlArr.indexOf(opts.url), 1);
   let succLabel = true;
   let data = null;
   try {
